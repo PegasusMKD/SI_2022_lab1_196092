@@ -1,0 +1,138 @@
+4. git clone git@github.com:PegasusMKD/SI_2022_lab1_196092.git
+Cloning into 'SI_2022_lab1_196092'...
+Enter passphrase for key '/c/Users/Pazzio/.ssh/id_rsa':
+remote: Enumerating objects: 9, done.
+remote: Counting objects: 100% (9/9), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 9 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (9/9), done.
+
+Го клонираме оддалечениот репозиториум за можеме локално да работиме на промени.
+
+5. Откако ќе го направиме file-от и го пополниме со податоците, ја извршуваме командата
+
+git add -A за да го додадеме file-от и притоа го добиваме овој log
+warning: LF will be replaced by CRLF in shopping_list.txt.
+The file will have its original line endings in your working directory
+
+и после тоа, ја повикуваме командата 'git commit -m "Add 5 items to the shopping list"'
+со кое го добиваме log-от
+[master 67c22fc] Add 5 items to the shopping list
+1 file changed, 5 insertions(+)
+create mode 100644 shopping_list.txt
+
+6. Откако ќе ги додадеме количините, ја извршуваме командата 'git commit -a -m "Add quantities to the items."'
+
+warning: LF will be replaced by CRLF in shopping_list.txt.
+The file will have its original line endings in your working directory
+[master e1cfa9a] Add quantities to the items.
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+7. Ги извршуваме командите 'git branch branch1' и 'git branch branch2' со кое ги креираме бараните гранки.
+
+8. За да е почитливо, ги печатиме logs користејќи го flag-от '--oneline', односно, ја извршуваме 
+командата 'git log --oneline' и го добиваме следниот log
+
+e1cfa9a (HEAD -> master, branch2, branch1) Add quantities to the items.
+67c22fc Add 5 items to the shopping list
+05aef20 (origin/master, origin/HEAD) Update README.md
+ae8f9da Update README.md
+84686ac Initial commit
+
+9.За master ја извршуваме командата 'git push origin master', со следниве logs
+
+Enter passphrase for key '/c/Users/Pazzio/.ssh/id_rsa':
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (6/6), 635 bytes | 635.00 KiB/s, done.
+Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:PegasusMKD/SI_2022_lab1_196092.git
+   05aef20..e1cfa9a  master -> master
+
+а за останатите гранки можеме групно да ги синхронизираме користејќи 'git push origin --all' со следниве logs
+
+Enter passphrase for key '/c/Users/Pazzio/.ssh/id_rsa':
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:PegasusMKD/SI_2022_lab1_196092.git
+ * [new branch]      branch1 -> branch1
+ * [new branch]      branch2 -> branch2
+
+10. git checkout branch1 за да се префрлиме на побараната гранка.
+
+11. git commit -a -m "Change quantity of item #5"
+со кое го добиваме следниот log
+warning: LF will be replaced by CRLF in shopping_list.txt.
+The file will have its original line endings in your working directory
+[branch1 b3be8f6] Change quantity of item #5
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+12. git checkout master
+
+13. git commit -a -m "Change quantity of item #2"
+[master 8403809] Change quantity of item #2
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+14. git push origin --all
+
+Enter passphrase for key '/c/Users/Pazzio/.ssh/id_rsa':
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 550 bytes | 550.00 KiB/s, done.
+Total 6 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 1 local object.
+To github.com:PegasusMKD/SI_2022_lab1_196092.git
+   e1cfa9a..b3be8f6  branch1 -> branch1
+   e1cfa9a..8403809  master -> master
+
+15. git checkout branch2
+
+16. git commit -a -m "Modify item #4"
+[branch2 61346d4] Modify item #4
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+17. git log --oneline
+
+61346d4 (HEAD -> branch2) Modify item #4
+e1cfa9a (origin/branch2) Add quantities to the items.
+67c22fc Add 5 items to the shopping list
+05aef20 Update README.md
+ae8f9da Update README.md
+84686ac Initial commit
+
+18. Откако ја додаваме новата ставка, ја извршуваме командата 
+'git commit -a --amend -m "Modify item #4 and add item #6"'
+[branch2 07eb3f0] Modify item #4 and add item #6
+ Date: Sun Apr 10 22:01:23 2022 +0200
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+19. git log --oneline
+
+07eb3f0 (HEAD -> branch2) Modify item #4 and add item #6
+e1cfa9a (origin/branch2) Add quantities to the items.
+67c22fc Add 5 items to the shopping list
+05aef20 Update README.md
+ae8f9da Update README.md
+84686ac Initial commit
+
+20. git merge branch1
+
+Auto-merging shopping_list.txt
+Merge made by the 'recursive' strategy.
+ shopping_list.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+21. git merge branch2 ни дава конфликти
+
+Auto-merging shopping_list.txt
+CONFLICT (content): Merge conflict in shopping_list.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+Ќе ги оставиме промените од branch2 бидејќи тие се понови.
+
+git commit -a -m "Merge 'branch2' into 'master' and fix conflicts"
+[master 8ad3e50] Merge 'branch2' into 'master' and fix conflicts
+
